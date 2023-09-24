@@ -10,3 +10,5 @@ Following are the assumptions of the current implementation,
 - No frameworks are used other than for testing.
 - All data will be lost during a server restart because data is all in memory.
 - Used a plugin to generate some Builder logic but it can be done in a better way that we support setting values in any order. Current approach only support setting values in a strict order. We should revisit this and do a proper Builder implementation. This was mainly done to save time and move fairly quickly.
+- When adding or querying by SSN we should put the SSN in the request body rather than putting it in the query parameter.
+- Depending on the sensitivity of the social security number, we can later decide weather to store the hashed version or the raw values.
