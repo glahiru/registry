@@ -1,6 +1,6 @@
 package util;
 
-import registry.Child;
+import registry.models.Child;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,6 @@ public class ChildUtil {
                 oldest = child;
             }
         }
-        return oldest != null ? Optional.of(oldest) : Optional.empty();
+        return Optional.ofNullable(oldest);
     }
 }

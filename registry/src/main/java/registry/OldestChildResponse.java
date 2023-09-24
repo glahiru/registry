@@ -1,5 +1,8 @@
 package registry;
 
+import registry.models.Id;
+import registry.models.Name;
+
 import javax.annotation.processing.Generated;
 import java.util.Optional;
 

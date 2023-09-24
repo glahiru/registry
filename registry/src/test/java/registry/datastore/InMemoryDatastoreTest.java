@@ -1,13 +1,13 @@
-package test.registry.datastore.impl;
+package registry.datastore;
 
 import datastore.InvalidPersonException;
-import datastore.impl.InMemoryDatastore;
+import datastore.InMemoryDatastore;
 import org.junit.Before;
 import org.junit.Test;
-import registry.Child;
-import registry.Id;
-import registry.Name;
-import registry.Person;
+import registry.models.Child;
+import registry.models.Id;
+import registry.models.Name;
+import registry.models.Person;
 
 import static org.junit.Assert.assertThrows;
 

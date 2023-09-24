@@ -1,4 +1,4 @@
-package registry;
+package registry.models;
 
 import javax.annotation.processing.Generated;
 

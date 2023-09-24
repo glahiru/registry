@@ -1,4 +1,4 @@
-package registry;
+package registry.models;
 
 import javax.annotation.processing.Generated;
 
@@ -15,10 +15,6 @@ public class Child {
 
     public int getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public Name getName() {

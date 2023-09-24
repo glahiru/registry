@@ -1,6 +1,6 @@
 package util;
 
-import registry.Id;
+import registry.models.Id;
 
 import java.util.regex.Pattern;
 

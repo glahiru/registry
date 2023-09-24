@@ -1,8 +1,8 @@
 package datastore;
 
-import registry.Id;
-import registry.Name;
-import registry.Person;
+import registry.models.Id;
+import registry.models.Name;
+import registry.models.Person;
 
 import java.util.Optional;
 

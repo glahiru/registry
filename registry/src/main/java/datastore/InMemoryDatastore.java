@@ -1,10 +1,9 @@
-package datastore.impl;
+package datastore;
 
-import datastore.*;
-import registry.Child;
-import registry.Id;
-import registry.Name;
-import registry.Person;
+import registry.models.Child;
+import registry.models.Id;
+import registry.models.Name;
+import registry.models.Person;
 import util.ChildUtil;
 import util.Validator;
 
@@ -18,6 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class InMemoryDatastore implements Datastore {
     private final Map<Id, Person> registry = new ConcurrentHashMap<>();
+
     // We duplicate data here because the number of Persons are low but this map would allow us to
     // query the oldest child quickly.
     private final Map<Id, Child> oldestChild = new ConcurrentHashMap<>();
@@ -31,7 +31,6 @@ public class InMemoryDatastore implements Datastore {
         return registry.containsKey(id) ? Optional.of(registry.get(id)) : Optional.empty();
     }
 
-    // This
     @Override
     public boolean addPerson(Person person) throws InvalidPersonException, RecordExistException {
         if (!Validator.isValid(person.getId())) {

@@ -1,12 +1,20 @@
-package test.registry;
+package registry;
 
+import datastore.InvalidPersonException;
+import datastore.RecordExistException;
 import org.junit.Before;
 import org.junit.Test;
-import registry.*;
+import registry.models.Child;
+import registry.models.Id;
+import registry.models.Name;
+import registry.models.Person;
 
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
 public class PeopleServiceTest {
     public static final Name NAME_1 = Name.newInstance().firstName("Lahiru").lastName("G").build();
@@ -31,9 +39,10 @@ public class PeopleServiceTest {
 
     // Needs to add more test cases to validate.
     @Test
-    public void invalidIdTest() {
+    public void invalidIdTest() throws Exception {
         // Datastore tests can be used to assert proper exceptions.
-        assertFalse(peopleService.addPerson(Person.newInstance().id(INVALID_ID_START)
+        assertThrows(InvalidPersonException.class,
+                () -> peopleService.addPerson(Person.newInstance().id(INVALID_ID_START)
                 .name(NAME_1)
                 .spouse(NAME_SPOUSE)
                 .children(java.util.List.of(CHILD_1))
@@ -41,7 +50,7 @@ public class PeopleServiceTest {
     }
 
     @Test
-    public void addPersonTest() {
+    public void addPersonTest() throws Exception {
         assertTrue(peopleService.addPerson(BASE_PERSON));
     }
 
@@ -59,7 +68,7 @@ public class PeopleServiceTest {
     public void failToAddWithSameIdTest() throws Exception {
         assertTrue(peopleService.addPerson(BASE_PERSON));
 
-        assertFalse(peopleService.addPerson(Person.newInstance().id(ID_1)
+        assertThrows(RecordExistException.class, () -> peopleService.addPerson(Person.newInstance().id(ID_1)
                 .name(NAME_1).spouse(NAME_SPOUSE).children(java.util.List.of(CHILD_1, CHILD_OLDEST)).build()));
 
         Optional<Person> person = peopleService.getPerson(ID_1);

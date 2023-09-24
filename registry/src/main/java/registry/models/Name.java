@@ -1,4 +1,4 @@
-package registry;
+package registry.models;
 
 import javax.annotation.processing.Generated;
 
@@ -13,14 +13,6 @@ public class Name {
 
     public static FirstNameStep newInstance() {
     return new Builder();
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package registry;
 
 import datastore.*;
-import datastore.impl.InMemoryDatastore;
+import datastore.InMemoryDatastore;
+import registry.models.Id;
+import registry.models.Person;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -21,14 +23,13 @@ public class PeopleService {
         return new PeopleService(new InMemoryDatastore());
     }
 
-    // TODO(glahiru): If updates are supported, it can be implemented separate.
-    public boolean addPerson(Person person) {
-        try {
-            return this.datastore.addPerson(person);
-        } catch (InvalidPersonException | RecordExistException e) {
-            logger.severe(String.format("Failed to add the person given: %s", person.toString()));
-        }
-        return false;
+    public boolean addPerson(Person person) throws InvalidPersonException, RecordExistException {
+        return this.datastore.addPerson(person);
+    }
+
+    // TODO(glahiru): Implement the update operation.
+    public boolean updatePerson(Person person) {
+        throw new UnsupportedOperationException();
     }
 
     public Optional<Person> getPerson(Id id) throws InvalidIdException {
@@ -38,4 +39,5 @@ public class PeopleService {
     public OldestChildResponse getOldest(Id id) throws NoChildException, InvalidIdException {
         return OldestChildResponse.newInstance().name(this.datastore.getOldestChild(id)).parentId(id).build();
     }
+
 }
